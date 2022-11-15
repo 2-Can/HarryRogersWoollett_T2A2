@@ -1,11 +1,10 @@
 import os
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from init import db, ma, bcrypt, jwt
+from flask import Flask
 from controllers.playlists_controller import playlists_bp
-
-db = SQLAlchemy()
-ma = Marshmallow()
+from controllers.cli_controller import db_commands
 
 def create_app():
     app = Flask(__name__)
@@ -18,5 +17,6 @@ def create_app():
     ma.init_app(app)
 
     app.register_blueprint(playlists_bp)
+    app.register_blueprint(db_commands)
 
     return app

@@ -17,3 +17,19 @@ def create_db():
 def drop_db():
     db.drop_all()
     print("Tables dropped")
+
+@db_commands.cli.command('seed')
+def seed_db():
+    users = [
+        User(
+            first_name='Jerry',
+            last_name='Seinfeld',
+            email='jerry@soty.com',
+            password='shrinkage'
+        )
+    ]
+
+    db.session.add_all(users)
+    db.session.commit()
+
+    print('Tables seeded')

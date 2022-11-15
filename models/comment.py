@@ -1,4 +1,4 @@
-from main import db
+from main import db, ma
 
 class Comment(db.Model):
     __tablename__ = 'comments'

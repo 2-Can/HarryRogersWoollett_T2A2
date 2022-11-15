@@ -1,4 +1,4 @@
-from main import db
+from main import db, ma
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -12,3 +12,5 @@ class User(db.Model):
 
     playlists = db.relationship('Playlist', back_populates='user', cascade='all, delete')
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
+
+class UserSchema(ma.Schema):

@@ -1,4 +1,4 @@
-from main import db
+from main import db, ma
 
 class Playlist(db.Model):
     __tablename__ = 'playlists'
@@ -8,3 +8,8 @@ class Playlist(db.Model):
     playlist_year = db.Column(db.Integer)
     
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+
+    user = db.relationship('User', back_populates='playlist')
+    comments = db.relationship('Comment', back_populates='playlist', cascade='all, delete' )
+
+class PlaylistSchema(ma.Schema):

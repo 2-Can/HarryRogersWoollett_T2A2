@@ -1,4 +1,4 @@
-from main import db
+from main import db, ma
 
 class PlaylistSong(db.Model):
     __tablename__ = 'playlist_songs'

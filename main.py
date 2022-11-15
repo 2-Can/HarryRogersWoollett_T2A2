@@ -1,6 +1,4 @@
 import os
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
 from init import db, ma, bcrypt, jwt
 from flask import Flask
 from controllers.playlists_controller import playlists_bp

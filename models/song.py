@@ -1,4 +1,5 @@
-from main import db, ma
+from init import db, ma
+from marshmallow import fields
 
 class Song(db.Model):
     __tablename__ = 'songs'
@@ -11,4 +12,3 @@ class Song(db.Model):
     song_year = db.Column(db.Integer)
     duration = db.Column(db.Integer)
     song_link = db.Column(db.String)
-

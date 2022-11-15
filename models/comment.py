@@ -1,4 +1,5 @@
-from main import db, ma
+from init import db, ma
+from marshmallow import fields
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -8,4 +9,4 @@ class Comment(db.Model):
     date = db.Column(db.Date)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.playlists_id'), nullable=False)
+    playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.playlist_id'), nullable=False)

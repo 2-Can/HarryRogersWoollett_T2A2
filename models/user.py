@@ -16,11 +16,9 @@ class User(db.Model):
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
 
 class UserSchema(ma.Schema):
-    playlists = fields.List(fields.Nested('PlaylistSchema', exclude=['user']))
-    comments = fields.List(fields.Nested('CommentSchema', exclude=['user']))
+    playlists = fields.List(fields.Nested('PlaylistSchema'))
+    comments = fields.List(fields.Nested('CommentSchema'))
 
     class Meta:
         fields = ('user_id', 'first_name', 'last_name', 'email', 'password', 'is_admin', 'playlists', 'comments')
-
-
-    
+        ordered = True

@@ -1,5 +1,5 @@
-from init import db, ma
 from marshmallow import fields
+from init import db, ma
 
 
 class Playlist(db.Model):
@@ -13,5 +13,11 @@ class Playlist(db.Model):
 
     user = db.relationship('User', back_populates='playlists')
     comments = db.relationship('Comment', back_populates='playlist', cascade='all, delete' )
+    
+class PlaylistSchema(ma.Schema):
+    user = fields.Nested('UserSchema', only=['first_name', 'last_name', 'email'])
+    comments = fields.List(fields.Nested('CommentSchema', exlclude=['playlist']))
 
-# class PlaylistSchema(ma.Schema):
+    class Meta:
+        fields = ('playlist_id', 'playlist_name', 'playlist_year')
+    

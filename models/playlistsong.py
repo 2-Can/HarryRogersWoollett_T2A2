@@ -1,5 +1,5 @@
-from init import db, ma
 from marshmallow import fields
+from init import db, ma
 
 class PlaylistSong(db.Model):
     __tablename__ = 'playlist_songs'

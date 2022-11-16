@@ -1,5 +1,5 @@
-from init import db, ma
 from marshmallow import fields
+from init import db, ma
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -13,3 +13,9 @@ class Comment(db.Model):
 
     user = db.relationship('User', back_populates='comments')
     playlist = db.relationship('Playlist', back_populates='comments')
+
+class CommentSchema(ma.Schema):
+    playlists = fields.List(fields.Nested('PlaylistSchema', exclude=['user']))
+
+    class Meta:
+        fields = ('comment_id', 'message', 'date')

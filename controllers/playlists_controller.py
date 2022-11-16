@@ -3,8 +3,8 @@ from flask import Blueprint
 
 playlists_bp = Blueprint('playlists', __name__, url_prefix='/playlists' )
 
-@playlists_bp.route('')
-def test():
+@playlists_bp.route('/')
+def get_all_playlists():
     return 'playlists route'
 
 @playlists_bp.route('/secondary')

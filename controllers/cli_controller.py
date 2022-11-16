@@ -1,5 +1,5 @@
 from flask import Blueprint
-from init import db
+from init import db, bcrypt
 from models.user import User
 from models.playlist import Playlist
 from models.song import Song
@@ -24,8 +24,15 @@ def seed_db():
         User(
             first_name='Jerry',
             last_name='Seinfeld',
-            email='jerry@soty.com',
-            password='shrinkage'
+            email='admin@soty.com',
+            password=bcrypt.generate_password_hash('shrinkage').decode('utf-8'),
+            is_admin=True
+        ),
+        User(
+            first_name='George',
+            last_name='Costanza',
+            email='george@soty.com',
+            password=bcrypt.generate_password_hash('vandelay').decode('utf-8')
         )
     ]
 

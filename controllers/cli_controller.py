@@ -33,10 +33,42 @@ def seed_db():
             last_name='Costanza',
             email='george@soty.com',
             password=bcrypt.generate_password_hash('vandelay').decode('utf-8')
-        )
+        ),
     ]
 
     db.session.add_all(users)
     db.session.commit()
+
+    playlists = [
+        Playlist(
+            playlist_name="Best Songs 2022",
+            playlist_year="2022",
+            user = users[1]
+        )
+    ]
+
+    db.session.add_all(playlists)
+    db.session.commit()
+
+    songs = [
+        Song(
+            song_name = "Jackie Down The Line",
+            artist = "Fontaines D.C.",
+            genre = "Post-Punk",
+            album = "Skinty Fia",
+            song_year = "2022",
+            duration = "243",
+            song_link = "https://www.youtube.com/watch?v=3AoOfJP3r40"
+        )
+    ]
+
+    db.session.add_all(songs)
+    db.session.commit()
+
+    # comments = [
+    #     Comment(
+
+    #     )
+    # ]
 
     print('Tables seeded')

@@ -1,5 +1,5 @@
 from flask import Blueprint
-# from main import db
+from init import db
 
 playlists_bp = Blueprint('playlists', __name__, url_prefix='/playlists' )
 

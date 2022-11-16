@@ -1,5 +1,6 @@
 from flask import Blueprint
 from init import db, bcrypt
+from datetime import date
 from models.user import User
 from models.playlist import Playlist
 from models.song import Song
@@ -65,10 +66,17 @@ def seed_db():
     db.session.add_all(songs)
     db.session.commit()
 
-    # comments = [
-    #     Comment(
+    comments = [
+        Comment(
+            message = 'this playlist sucks',
+            user = users[1],
+            playlist = playlists[0],
+            date = date.today()
+        )
+    ]
 
-    #     )
-    # ]
+    db.session.add_all(comments)
+    db.session.commit()
+
 
     print('Tables seeded')

@@ -1,7 +1,9 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from init import db
+from datetime import date
 from models.playlist import Playlist, PlaylistSchema
+from models.comment import Comment, CommentSchema
 from controllers.auth_controller import authorize
 from sqlalchemy.exc import IntegrityError
 
@@ -60,5 +62,23 @@ def update_playlist(playlist_id):
         playlist.playlist_year = request.json.get('playlist_year') or playlist.playlist_year
         db.session.commit()      
         return PlaylistSchema().dump(playlist)
+    else:
+        return {'error': f'Playlist not found with id {playlist_id}'}, 404
+
+@playlists_bp.route('/<int:playlist_id>/comments', methods=['POST'])
+@jwt_required()
+def create_comment(playlist_id):
+    stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
+    playlist = db.session.scalar(stmt)
+    if playlist:
+        comment = Comment(
+            message = request.json['message'],
+            user_id = get_jwt_identity(),
+            playlist = playlist,
+            date = date.today()
+        )
+        db.session.add(comment)
+        db.session.commit()
+        return CommentSchema().dump(comment), 201
     else:
         return {'error': f'Playlist not found with id {playlist_id}'}, 404

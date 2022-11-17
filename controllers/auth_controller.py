@@ -34,6 +34,7 @@ def auth_register():
 
 @auth_bp.route('/login', methods=['POST'])
 def auth_login():
+    # User login for authentication
     stmt = db.select(User).filter_by(email=request.json['email'])
     user = db.session.scalar(stmt)
     if user and bcrypt.check_password_hash(user.password, request.json['password']):
@@ -45,6 +46,7 @@ def auth_login():
 @auth_bp.route('/<int:user_id>/', methods=['DELETE'])
 @jwt_required()
 def delete_one_user(user_id):
+    # Delete a user, admin only
     authorize()
 
     stmt = db.select(User).filter_by(user_id=user_id)
@@ -57,6 +59,7 @@ def delete_one_user(user_id):
         return {'error': f'User not found with User ID {user_id}'}, 404
 
 def authorize():
+    # Admin check
     user_id = get_jwt_identity()
     stmt = db.select(User).filter_by(user_id=user_id)
     user = db.session.scalar(stmt)

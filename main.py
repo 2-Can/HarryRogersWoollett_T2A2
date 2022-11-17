@@ -4,6 +4,7 @@ from flask import Flask
 from controllers.playlists_controller import playlists_bp
 from controllers.cli_controller import db_commands
 from controllers.auth_controller import auth_bp
+from controllers.songs_controller import songs_bp
 
 def create_app():
     app = Flask(__name__)
@@ -20,5 +21,6 @@ def create_app():
     app.register_blueprint(playlists_bp)
     app.register_blueprint(db_commands)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(songs_bp)
 
     return app

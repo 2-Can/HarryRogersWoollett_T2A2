@@ -10,7 +10,7 @@ playlists_bp = Blueprint('playlists', __name__, url_prefix='/playlists' )
 @playlists_bp.route('/')
 @jwt_required()
 def get_all_playlists():
-    # get a list of all playlists
+    # Get a list of all playlists
     stmt = db.select(Playlist)
     playlists = db.session.scalars(stmt)
     return PlaylistSchema(many=True).dump(playlists)
@@ -36,6 +36,7 @@ def create_playlist():
 @playlists_bp.route('/<int:playlist_id>', methods=['DELETE'])
 @jwt_required()
 def delete_one_playlist(playlist_id):
+    # Delete a Playlist
     authorize()
 
     stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
@@ -47,8 +48,10 @@ def delete_one_playlist(playlist_id):
     else:
         return {'error': f'Playlist not found with Playlist ID {playlist_id}'}, 404
 
+
 @playlists_bp.route('/<int:playlist_id>/', methods=['PUT', 'PATCH'])
 @jwt_required()
+# Update a playlist's details
 def update_playlist(playlist_id):
     stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
     playlist = db.session.scalar(stmt)

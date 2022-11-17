@@ -12,3 +12,8 @@ class Song(db.Model):
     song_year = db.Column(db.Integer)
     duration = db.Column(db.Integer)
     song_link = db.Column(db.String)
+
+class SongSchema(ma.Schema):
+    class Meta:
+        fields = ('song_name', 'artist', 'genre', 'album', 'song_year', 'duration', 'song_link')
+        ordered = True

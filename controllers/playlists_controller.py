@@ -17,6 +17,17 @@ def get_all_playlists():
     playlists = db.session.scalars(stmt)
     return PlaylistSchema(many=True).dump(playlists)
 
+# Get one playlist
+@playlists_bp.route('/<int:playlist_id>/')
+@jwt_required()
+def get_one_playlist(playlist_id):
+    stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
+    playlist = db.session.scalar(stmt)
+    if playlist:
+        return PlaylistSchema().dump(playlist)
+    else:
+        return {'error': f'Playlist not found with id {playlist_id}'}, 404
+
 
 @playlists_bp.route('/create/', methods=['POST'])
 @jwt_required()
@@ -68,6 +79,7 @@ def update_playlist(playlist_id):
 @playlists_bp.route('/<int:playlist_id>/comments', methods=['POST'])
 @jwt_required()
 def create_comment(playlist_id):
+    # comment on a playlist
     stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
     playlist = db.session.scalar(stmt)
     if playlist:
@@ -82,3 +94,19 @@ def create_comment(playlist_id):
         return CommentSchema().dump(comment), 201
     else:
         return {'error': f'Playlist not found with id {playlist_id}'}, 404
+
+
+@playlists_bp.route('/comments/<int:comment_id>/', methods=['DELETE'])
+@jwt_required()
+def delete_comment(comment_id):
+    # Delete a Comment
+    authorize()
+
+    stmt = db.select(Comment).filter_by(comment_id=comment_id)
+    comment = db.session.scalar(stmt)
+    if comment:
+        db.session.delete(comment)
+        db.session.commit()
+        return {'message': f"Comment '{comment.message}' deleted successfully"}
+    else:
+        return {'error': f'Comment not found with comment ID {comment_id}'}, 404

@@ -13,15 +13,15 @@ class Playlist(db.Model):
 
     user = db.relationship('User', back_populates='playlists')
     comments = db.relationship('Comment', back_populates='playlist', cascade='all, delete' )
-    # playlistsongs = db.relationship('PlaylistSong', back_populates='playlist', cascade='all, delete')
+    playlist_songs = db.relationship('PlaylistSong', back_populates='playlist', cascade='all, delete')
 
 
 class PlaylistSchema(ma.Schema):
     user = fields.Nested('UserSchema', only=['first_name', 'last_name', 'email'])
     comments = fields.List(fields.Nested('CommentSchema', exclude=['playlist_id']))
-    # playlistsongs = fields.List(fields.Nested('PlaylistSongSchema'))
+    playlistsongs = fields.List(fields.Nested('PlaylistSongSchema'))
 
     class Meta:
-        fields = ('playlist_id', 'playlist_name', 'playlist_year', 'user', 'comments')
+        fields = ('playlist_id', 'playlist_name', 'playlist_year', 'user', 'playlist_songs', 'comments')
         ordered = True
     

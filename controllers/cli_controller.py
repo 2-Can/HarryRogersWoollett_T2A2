@@ -5,7 +5,6 @@ from models.user import User
 from models.playlist import Playlist
 from models.song import Song
 from models.comment import Comment
-# from models.playlistsong import PlaylistSong
 
 db_commands = Blueprint('db', __name__)
 

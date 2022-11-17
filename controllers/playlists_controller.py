@@ -4,6 +4,7 @@ from init import db
 from datetime import date
 from models.playlist import Playlist, PlaylistSchema
 from models.comment import Comment, CommentSchema
+from models.playlistsong import PlaylistSong
 from controllers.auth_controller import authorize
 from sqlalchemy.exc import IntegrityError
 

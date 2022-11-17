@@ -15,7 +15,7 @@ class Comment(db.Model):
     playlist = db.relationship('Playlist', back_populates='comments')
 
 class CommentSchema(ma.Schema):
-    playlists = fields.List(fields.Nested('PlaylistSchema', exclude=['user']))
+    playlists = fields.List(fields.Nested('PlaylistSchema'))
 
     class Meta:
         fields = ('user_id', 'comment_id', 'message', 'playlist_id', 'date')

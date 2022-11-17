@@ -19,5 +19,5 @@ class PlaylistSchema(ma.Schema):
     comments = fields.List(fields.Nested('CommentSchema', exlclude=['playlist']))
 
     class Meta:
-        fields = ('playlist_id', 'playlist_name', 'playlist_year')
+        fields = ('playlist_id', 'playlist_name', 'playlist_year', 'comments')
     

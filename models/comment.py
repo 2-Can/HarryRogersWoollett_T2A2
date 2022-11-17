@@ -18,4 +18,4 @@ class CommentSchema(ma.Schema):
     playlists = fields.List(fields.Nested('PlaylistSchema', exclude=['user']))
 
     class Meta:
-        fields = ('comment_id', 'message', 'playlist_id', 'date')
+        fields = ('user_id', 'comment_id', 'message', 'playlist_id', 'date')

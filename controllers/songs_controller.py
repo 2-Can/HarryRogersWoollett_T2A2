@@ -15,6 +15,16 @@ def get_all_songs():
     return SongSchema(many=True).dump(songs)
 
 # Get one song
+@songs_bp.route('/<int:song_id>/')
+def get_one_song(song_id):
+    stmt = db.select(Song).filter_by(song_id=song_id)
+    song = db.session.scalar(stmt)
+    if song:
+        return SongSchema().dump(song)
+    else:
+        return {'error': f'Song not found with id {song_id}'}, 404
+
+
 
 # Create song
 

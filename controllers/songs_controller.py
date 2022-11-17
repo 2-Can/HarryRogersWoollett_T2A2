@@ -1,7 +1,8 @@
 from flask import Blueprint, request
 from init import db
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from models.song import Song, SongSchema
+from controllers.auth_controller import authorize
 
 songs_bp = Blueprint('songs', __name__, url_prefix='/songs' )
 
@@ -67,6 +68,18 @@ def update_song(song_id):
     else:
         return {'error': f'Song not found with id {song_id}'}, 404
 
-
 # Delete Song
+@songs_bp.route('/<int:song_id>', methods=['DELETE'])
+@jwt_required()
+def delete_one_song(song_id):
+    # Delete a Song
+    authorize()
 
+    stmt = db.select(Song).filter_by(song_id=song_id)
+    song = db.session.scalar(stmt)
+    if song:
+        db.session.delete(song)
+        db.session.commit()
+        return {'message': f"Song '{song.song_name}' deleted successfully"}
+    else:
+        return {'error': f'Song not found with Song ID {song_id}'}, 404

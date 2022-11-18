@@ -4,7 +4,7 @@ from init import db
 from datetime import date
 from models.playlist import Playlist, PlaylistSchema
 from models.comment import Comment, CommentSchema
-from models.playlistsong import PlaylistSong
+from models.playlistsong import PlaylistSong, PlaylistSongSchema
 from controllers.auth_controller import authorize
 from sqlalchemy.exc import IntegrityError
 
@@ -111,3 +111,20 @@ def delete_comment(comment_id):
         return {'message': f"Comment '{comment.message}' deleted successfully"}
     else:
         return {'error': f'Comment not found with comment ID {comment_id}'}, 404
+
+# @playlists_bp.route('/<int:playlist_id>/song', methods=['POST'])
+# @jwt_required()
+# def add_song(playlist_id):
+#     # add song to playlist
+#     stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
+#     playlist = db.session.scalar(stmt)
+#     if playlist:
+#         playlistsong = PlaylistSong(
+#             song_id = request.json['song_id'],
+#             playlist=playlist
+#         )
+#         db.session.add(playlistsong)
+#         db.session.commit()
+#         return PlaylistSongSchema().dump(playlistsong), 201
+#     else:
+#         return {'error': f'Playlist not found with id {playlist_id}'}, 404

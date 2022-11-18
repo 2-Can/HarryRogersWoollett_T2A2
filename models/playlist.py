@@ -19,7 +19,7 @@ class Playlist(db.Model):
 class PlaylistSchema(ma.Schema):
     user = fields.Nested('UserSchema', only=['first_name', 'last_name', 'email'])
     comments = fields.List(fields.Nested('CommentSchema', exclude=['playlist_id']))
-    playlistsongs = fields.List(fields.Nested('PlaylistSongSchema'))
+    playlist_songs = fields.List(fields.Nested('PlaylistSongSchema', exclude=['playlist_id']))
 
     class Meta:
         fields = ('playlist_id', 'playlist_name', 'playlist_year', 'user', 'playlist_songs', 'comments')

@@ -128,3 +128,18 @@ def add_song(playlist_id):
         return PlaylistSongSchema().dump(playlistsong), 201
     else:
         return {'error': f'Playlist not found with id {playlist_id}'}, 404
+
+
+@playlists_bp.route('/song/<int:playlistsongs_id>', methods=['DELETE'])
+@jwt_required()
+def delete_song(playlistsongs_id):
+    # Delete a song from a playlist
+
+    stmt = db.select(PlaylistSong).filter_by(playlistsongs_id=playlistsongs_id)
+    playlist_song = db.session.scalar(stmt)
+    if playlist_song:
+        db.session.delete(playlist_song)
+        db.session.commit()
+        return {'message': f"Playlist song '{playlistsongs_id}' deleted successfully"}
+    else:
+        return {'error': f'Playlist song not found with playlist song ID {playlistsongs_id}'}, 404

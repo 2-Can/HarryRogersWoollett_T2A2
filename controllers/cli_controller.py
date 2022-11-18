@@ -5,6 +5,7 @@ from models.user import User
 from models.playlist import Playlist
 from models.song import Song
 from models.comment import Comment
+from models.playlistsong import PlaylistSong
 
 db_commands = Blueprint('db', __name__)
 
@@ -145,6 +146,18 @@ def seed_db():
 
     db.session.add_all(songs)
     db.session.commit()
+
+    playlistsongs = [
+        PlaylistSong(
+            playlist_id = "1",
+            song_id = "1",
+
+        )
+    ]
+
+    db.session.add_all(playlistsongs)
+    db.session.commit()
+
 
     comments = [
         Comment(

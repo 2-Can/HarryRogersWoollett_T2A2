@@ -11,6 +11,20 @@ Partly as a consequence of this wealth of features, PostgreSQL is noted as being
 ## Identify and discuss the key functionalities and benefits of an ORM
 An ORM or Object Relational Mapper allows users to manipulate a relational database using object-oriented programming languages, such as Python. It acts as a layer between the server and the database, translating Python functions into queries that can be interpreted by the database. This allows for greater ease of use, minimizing errors and expanding functionality. It allows us to make commands at scale, such as seeding a whole database or creating all our tables in one command, rather than inputting them individually. Many ORMs can also sanitize any queries made, removing the threat of SQL injections. In this project SQLAlchemy has been used as the ORM.
 
+
+
+## An ERD for your app
+![SOTY ERD](docs/SOTY_ERD.PNG)
+
+
+## Detail any third party services that your app will use
+
+## Describe your projects models in terms of the relationships they have with each other
+
+## Discuss the database relations to be implemented in your application
+
+## Describe the way tasks are allocated and tracked in your project
+
 ## Document all endpoints for your API
 
 ### Users LOGIN
@@ -184,13 +198,3 @@ An ORM or Object Relational Mapper allows users to manipulate a relational datab
 **Required authentication**: Requires authenticated JSON Web Token 
 
 **Response**: Playlist song 'song_id' deleted successfully
-
-## An ERD for your app
-
-## Detail any third party services that your app will use
-
-## Describe your projects models in terms of the relationships they have with each other
-
-## Discuss the database relations to be implemented in your application
-
-## Describe the way tasks are allocated and tracked in your project

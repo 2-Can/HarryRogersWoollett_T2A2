@@ -112,19 +112,19 @@ def delete_comment(comment_id):
     else:
         return {'error': f'Comment not found with comment ID {comment_id}'}, 404
 
-# @playlists_bp.route('/<int:playlist_id>/song', methods=['POST'])
-# @jwt_required()
-# def add_song(playlist_id):
-#     # add song to playlist
-#     stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
-#     playlist = db.session.scalar(stmt)
-#     if playlist:
-#         playlistsong = PlaylistSong(
-#             song_id = request.json['song_id'],
-#             playlist=playlist
-#         )
-#         db.session.add(playlistsong)
-#         db.session.commit()
-#         return PlaylistSongSchema().dump(playlistsong), 201
-#     else:
-#         return {'error': f'Playlist not found with id {playlist_id}'}, 404
+@playlists_bp.route('/<int:playlist_id>/song', methods=['POST'])
+@jwt_required()
+def add_song(playlist_id):
+    # add song to playlist
+    stmt = db.select(Playlist).filter_by(playlist_id=playlist_id)
+    playlist = db.session.scalar(stmt)
+    if playlist:
+        playlistsong = PlaylistSong(
+            song_id = request.json['song_id'],
+            playlist=playlist
+        )
+        db.session.add(playlistsong)
+        db.session.commit()
+        return PlaylistSongSchema().dump(playlistsong), 201
+    else:
+        return {'error': f'Playlist not found with id {playlist_id}'}, 404

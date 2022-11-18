@@ -13,6 +13,8 @@ class Song(db.Model):
     duration = db.Column(db.Integer)
     song_link = db.Column(db.String)
 
+    playlist_songs = db.relationship('PlaylistSong', back_populates='song')
+
 class SongSchema(ma.Schema):
     class Meta:
         fields = ('song_name', 'artist', 'genre', 'album', 'song_year', 'duration', 'song_link')

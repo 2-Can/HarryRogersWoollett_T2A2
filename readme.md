@@ -16,11 +16,11 @@ An ORM or Object Relational Mapper allows users to manipulate a relational datab
 ### Users LOGIN
 */auth/login*
 
-Method: POST
+**Method**: POST
 
-Required data: "email" and "password" as raw JSON
+**Required data**: "email" and "password" as raw JSON
 
-Response: Email, authorization token, and is_admin (True or False)
+**Response**: Email, authorization token, and is_admin (True or False)
 
 ### Users REGISTER
 */auth/register*
@@ -169,7 +169,7 @@ Response: Comment 'message' deleted successfully
 ### PlaylistSong POST
 */playlists/playlist_id/song
 
-Method: POST
+**Method**: POST
 
 Required authentication: Requires authenticated JSON Web Token 
 

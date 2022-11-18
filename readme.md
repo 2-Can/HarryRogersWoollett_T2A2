@@ -18,12 +18,24 @@ An ORM or Object Relational Mapper allows users to manipulate a relational datab
 
 
 ## Detail any third party services that your app will use
+**Flask**: A lightweight Python framework for making web apps.
+
+**SQLAlchemy**: The ORM that bridges the Python code and the PSQL database. Classes and functions in the program are translated to tables and statements in the database.
+
+**Marshmallow**: Assists with serializing and deserializing between SQLAlchemy models, standard Python data structures and JSON.
+
+**BCrypt**: Provides password-hashing functionality for additional security.
+
+**Postman**: An external program used to test and keep track of all API endpoints.
 
 ## Describe your projects models in terms of the relationships they have with each other
 
+
 ## Discuss the database relations to be implemented in your application
 
+
 ## Describe the way tasks are allocated and tracked in your project
+
 
 ## Document all endpoints for your API
 

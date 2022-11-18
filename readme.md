@@ -25,166 +25,165 @@ An ORM or Object Relational Mapper allows users to manipulate a relational datab
 ### Users REGISTER
 */auth/register*
 
-Method: POST
+**Method**: POST
 
-Required data: "first_name", "last_name", "email" and "password" as raw JSON
+**Required data**: "first_name", "last_name", "email" and "password" as raw JSON
 
-Response: "user_id", "first_name", "last_name", "email", "is_admin"
+**Response**: "user_id", "first_name", "last_name", "email", "is_admin"
 
 ### Users GET
 */auth/users*
 
-Method: GET
+**Method**: GET
 
-Required data: None
+**Required data**: None
 
-Response: User details, playlists and comments
+**Response**: User details, playlists and comments
 
 ### Users DELETE
 */auth/user_id*
 
-Method: DELETE
+**Method**: DELETE
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Response: "User x deleted succesfully"
+**Response**: "User x deleted succesfully"
 
 ### Playlists GET All
 */playlists/*
 
-Method: GET
+**Method**: GET
 
-Required authentication: Requires authenticated JSON Web Token
+**Required authentication**: Requires authenticated JSON Web Token
 
-Response: List of all playlists, their songs and comments
+**Response**: List of all playlists, their songs and comments
 
 ### Playlists GET 1
 */playlists/playlist_id*
 
-Method: GET
+**Method**: GET
 
-Required authentication: Requires authenticated JSON Web Token
+**Required authentication**: Requires authenticated JSON Web Token
 
-Response: List of 1 playlist, its songs and comments
+**Response**: List of 1 playlist, its songs and comments
 
 ### Playlists CREATE
 */playlists/create*
 
-Method: POST
+**Method**: POST
 
-Required data: "playlist_name" and "playlist_year" as raw JSON
+**Required data**: "playlist_name" and "playlist_year" as raw JSON
 
-Required authentication: Requires authenticated JSON Web Token
+**Required authentication**: Requires authenticated JSON Web Token
 
-Response: Playlist details and details of user who created it.
+**Response**: Playlist details and details of user who created it.
 
 ### Playlists DELETE
 */playlists/playlist_id*
 
-Method: DELETE
+**Method**: DELETE
 
-Required authentication: Requires authenticated JSON Web Token
+**Required authentication**: Requires authenticated JSON Web Token
 
-Response: Playlist 'playlist_name' deleted succesfully
+**Response**: Playlist 'playlist_name' deleted succesfully
 
 ### Playlists UPDATE
 */playlists/playlist_id*
 
-Method: PUT
+**Method**: PUT
 
-Required authentication: Requires authenticated JSON Web Token
+**Required authentication**: Requires authenticated JSON Web Token
 
-Required data: "playlist_name" and "playlist_year" as raw JSON
+**Required data**: "playlist_name" and "playlist_year" as raw JSON
 
-Response: Playlist with updated details, comments and songs.
+**Response**: Playlist with updated details, comments and songs.
 
 ### Songs GET
 */songs*
 
-Method: GET
+**Method**: GET
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Response: List of all songs and song details in the database
-
+**Response**: List of all songs and song details in the database
 
 ### Songs GET 1
 */songs/song_id*
 
-Method: GET
+**Method**: GET
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Response: Details of the specified song (name, artist, genre, album, year, duration, link)
+**Response**: Details of the specified song (name, artist, genre, album, year, duration, link)
 
 ### Songs CREATE
 */songs/create*
 
-Method: POST
+**Method**: POST
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Required data: "song_name", "artist", "genre", "album", "song_year", "duration" and "song_link" as raw JSON
+**Required data**: "song_name", "artist", "genre", "album", "song_year", "duration" and "song_link" as raw JSON
 
-Response: All details of created song entry
+**Response**: All details of created song entry
 
 ### Songs UPDATE
 */songs/song_id*
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Required data: One, many or all of the following details as raw JSON: "song_name", "artist", "genre", "album", "song_year", "duration" and "song_link"
+**Required data**: One, many or all of the following details as raw JSON: "song_name", "artist", "genre", "album", "song_year", "duration" and "song_link"
 
-Response: All details of updated song entry
+**Response**: All details of updated song entry
 
 ### Songs DELETE
 */songs/song_id*
 
-Method: DELETE
+**Method**: DELETE
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Response: Song 'song_name' deleted successfully
+**Response**: Song 'song_name' deleted successfully
 
 ### Comments POST
 */playlists/playlist_id/comments*
 
-Method: POST
+**Method**: POST
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Required data: "message" as raw JSON
+**Required data**: "message" as raw JSON
 
-Response: Playlist ID, User ID, Comment ID, message and date of creation.
+**Response**: Playlist ID, User ID, Comment ID, message and date of creation.
 
 ### Comments DELETE
 */playlists/comments/comment_id*
 
-Method:DELETE
+**Method**:DELETE
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Response: Comment 'message' deleted successfully
+**Response**: Comment 'message' deleted successfully
 
 ### PlaylistSong POST
 */playlists/playlist_id/song
 
 **Method**: POST
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Required data:  'song_id' as raw JSON
+**Required data**:  'song_id' as raw JSON
 
-Response: song_id, playlist_id and playlistsongs_id
+**Response**: song_id, playlist_id and playlistsongs_id
 
 ### PlaylistSong DELETE
 *playlists/song/song_id*
 
-Method:  DELETE
+**Method**:  DELETE
 
-Required authentication: Requires authenticated JSON Web Token 
+**Required authentication**: Requires authenticated JSON Web Token 
 
-Response: Playlist song 'song_id' deleted successfully
+**Response**: Playlist song 'song_id' deleted successfully
 
 ## An ERD for your app
 

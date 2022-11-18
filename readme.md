@@ -66,6 +66,10 @@ The majority of relations being implemented in the application are One-to-Many. 
 ## Describe the way tasks are allocated and tracked in your project
 Tasks have been allocated and tracked using Trello, linked [here](https://trello.com/invite/b/pthtnIDx/ATTI91ce7fe6bd792a2380f9b665c70a4bd2550BB8A7/t2a2).
 
+I used a Kanban framework for the board, which creates different columns to place tasks depending on which part of the development cycle they are in. For example, I began by listing all tasks in the Backlog column, and then moved them across to To-Do, Doing, Code Review and so on as they progressed. This system is particularly useful for software development as it is an iterative process, and a task that has moved forward to a column such as Code Review may need to be moved back into To-Do and looked at again.
+
+Additional handmade notes were made by scrawling on pen and paper.
+
 ## Document all endpoints for your API
 
 ### Users LOGIN
